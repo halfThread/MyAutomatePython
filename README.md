@@ -1,2 +1,2 @@
 # MyAutomatePython
-我的Python代码联系
+我的Python代码练习题
