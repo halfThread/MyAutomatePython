@@ -14,6 +14,8 @@
 import os
 import re
 
+import shutil
+
 
 def func():
     # re.VERBOSE表示正则表达式里的空格将会被忽略掉
@@ -27,11 +29,21 @@ def func():
         if mo is None:
             continue
 
-        beforePart = mo.group(1)  # 返回(.*?)匹配上的内容
-        monthPart = mo.group(2)  # 返回 \d 匹配上的内容
-        dayPart = mo.group(4)  # 返回
-    pass
+        beforePart = mo.group(1)
+        monthPart = mo.group(2)
+        dayPart = mo.group(4)
+        yearPart = mo.group(6)
+        afterPart = mo.group(8)
+
+        euroFilename = beforePart + dayPart + '-' + monthPart + '-' + yearPart + afterPart
+
+        absWorkingDir = os.path.abspath('.')
+        amerFilename = os.path.join(absWorkingDir, amerFilename)
+        euroFilename = os.path.join(absWorkingDir, euroFilename)
+
+        print('Renaming "%s" to "%s"...' % (amerFilename, euroFilename))
+        shutil.move(amerFilename, euroFilename)
 
 
 if __name__ == '__main__':
-    pass
+    func()
